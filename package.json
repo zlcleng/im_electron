@@ -1,0 +1,81 @@
+{
+  "name": "electron_mijian",
+  "productName": "觅建桌面端",
+  "version": "1.0.0",
+  "description": "觅建运营管理桌面端",
+  "main": "electron/main.js",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "start": "concurrently --kill-others \"yarn dev:electron\" \"yarn dev:vue\"",
+    "dev:electron": "cross-env NODE_ENV=development electron .",
+    "build:electron:mac": "vite build && electron-builder --m",
+    "build:electron:windows": "vite build && electron-builder -w",
+    "electron:build": "pnpm run build && electron-builder"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-vue": "^3.1.2",
+    "concurrently": "^7.4.0",
+    "cross-env": "^7.0.3",
+    "electron": "20.3.1",
+    "electron-builder": "^23.6.0",
+    "less": "^4.1.3",
+    "node-gyp": "7.1.2",
+    "rollup-plugin-external-globals": "^0.6.1",
+    "vite": "^3.1.6",
+    "vite-plugin-electron": "^0.9.3"
+  },
+  "env": {
+    "VITE_DEV_SERVER_HOST": "172.16.4.237",
+    "VITE_DEV_SERVER_PORT": 5566
+  },
+  "dependencies": {
+    "@electron/remote": "^2.0.8",
+    "@element-plus/icons-vue": "^2.0.9",
+    "@ffmpeg-installer/ffmpeg": "^1.1.0",
+    "electron-store": "^8.1.0",
+    "element-plus": "^2.2.17",
+    "ffmpeg-extract-frame": "^1.0.2",
+    "ffprobe": "^1.1.2",
+    "ffprobe-static": "^3.1.0",
+    "file-type": "16.5.2",
+    "fluent-ffmpeg": "^2.1.2",
+    "im_electron_sdk": "^1.4.23",
+    "image-size": "^1.0.2",
+    "node-fetch": "2.6.1",
+    "nprogress": "^0.2.0",
+    "pinia": "^2.0.23",
+    "progress-stream": "^2.0.0",
+    "vue": "^3.2.40",
+    "vue-router": "^4.1.5"
+  },
+  "build": {
+    "files": [
+      "electron",
+      "icon"
+    ],
+    "appId": "im-electron-demo",
+    "mac": {
+      "gatekeeperAssess": false,
+      "hardenedRuntime": true,
+      "entitlements": "./signing/entitlements.mac.plist",
+      "entitlementsInherit": "./signing/entitlements.mac.plist",
+      "extendInfo": {
+        "NSMicrophoneUsageDescription": "Please give us access to your microphone",
+        "NSCameraUsageDescription": "Allow your conversational partners to see you in a Grape Call. You can turn off your video anytime during a call."
+      },
+      "icon": "./icon/logo.png"
+    },
+    "win": {
+      "icon": "./icon/logo.png",
+      "target": [
+        {
+          "target": "nsis",
+          "arch": [
+            "x64"
+          ]
+        }
+      ]
+    }
+  }
+}
