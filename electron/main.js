@@ -1,12 +1,13 @@
 const { app, ipcMain, Menu, Tray, BrowserWindow, Notification } = require('electron');
 const path = require('path');
 const url = require('url');
-const IPC = require('./ipc');
-const { mainInstance, initTimMain } = require('./utils/timMain')
+const IPC = require(path.join(__dirname, './ipc.js')) //require('./ipc');
+// const { mainInstance } = require('./utils/timMain')
 
 let ipc;
 let mainWindow;
-const logoPng = path.join(__dirname, '../icon/logo.png')
+const logoSrc = '../src/assets/logo.png' //process.env?.NODE_ENV?.trim() === 'development' ? '../icon/logo.png' : '../../icon/logo.png'
+const logoPng = path.join(__dirname, logoSrc)
 
 // 设置托盘
 function setTray () {
@@ -51,7 +52,7 @@ const createWindow = () => {
     }
   })
   // setTray()
-  mainInstance.enable(mainWindow.webContents)
+  // mainInstance.enable(mainWindow.webContents)
   global.WIN = mainWindow
 
   mainWindow.on('ready-to-show',() => {
@@ -65,9 +66,9 @@ const createWindow = () => {
     }, 30)
   })
   console.log('======process env======', process.env?.NODE_ENV);
-  mainWindow.loadURL(`http://172.16.4.237:5566`);
-  mainWindow.webContents.openDevTools();
-  // mainWindow.webContents.openDevTools();
+  mainWindow.loadURL(`http://172.16.4.237:5566`)
+  // process.env?.NODE_ENV === 'development' ? mainWindow.loadURL(`http://172.16.4.237:5566`) : mainWindow.loadURL(`https://mijiancare.feishu.cn/drive/home/`);
+  // process.env?.NODE_ENV === 'development' && mainWindow.webContents.openDevTools();
 }
 
 function showNotification () {

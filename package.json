@@ -5,11 +5,11 @@
   "description": "觅建运营管理桌面端",
   "main": "electron/main.js",
   "scripts": {
-    "dev": "vite",
+    "dev": "cross-env NODE_ENV=development vite",
     "build": "vite build",
     "start": "concurrently --kill-others \"yarn dev:electron\" \"yarn dev:vue\"",
     "dev:electron": "cross-env NODE_ENV=development electron .",
-    "build:electron:mac": "vite build && electron-builder --m",
+    "build:electron:mac": "vite build && electron-builder --mac",
     "build:electron:windows": "vite build && electron-builder -w",
     "electron:build": "pnpm run build && electron-builder"
   },
@@ -51,20 +51,41 @@
   },
   "build": {
     "files": [
-      "electron",
-      "icon"
+      "electron"
     ],
     "appId": "im-electron-demo",
     "mac": {
+      "target": [
+        "dmg",
+        "zip",
+        "pkg"
+      ],
       "gatekeeperAssess": false,
       "hardenedRuntime": true,
       "entitlements": "./signing/entitlements.mac.plist",
       "entitlementsInherit": "./signing/entitlements.mac.plist",
-      "extendInfo": {
-        "NSMicrophoneUsageDescription": "Please give us access to your microphone",
-        "NSCameraUsageDescription": "Allow your conversational partners to see you in a Grape Call. You can turn off your video anytime during a call."
-      },
       "icon": "./icon/logo.png"
+    },
+    "pkg": {
+      "isRelocatable": false,
+      "overwriteAction": "upgrade"
+    },
+    "dmg": {
+      "icon": "./icon/logo.png",
+      "iconSize": 100,
+      "sign": false,
+      "contents": [
+        {
+          "x": 112,
+          "y": 165
+        },
+        {
+          "type": "link",
+          "path": "/Applications",
+          "x": 396,
+          "y": 165
+        }
+      ]
     },
     "win": {
       "icon": "./icon/logo.png",

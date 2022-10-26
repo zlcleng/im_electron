@@ -21,6 +21,10 @@ export default defineConfig({
         })
         // entries: ['./electron/ipc.js']
       },
+      preload: {
+        // Must be use absolute path, this is the limit of rollup
+        input: join(__dirname, './electron/ipc.js'),
+      },
       // ipc: {
       //   input: join(__dirname, "./electron/ipc.js"),
       // },

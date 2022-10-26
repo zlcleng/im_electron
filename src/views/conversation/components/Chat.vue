@@ -3,7 +3,7 @@
     <ChatHeader />
     <section class="message-info-view__content">
       <!-- 历史消息 -->
-      <HistoryMessageList />
+      <MessageItem v-for="item in 5" />
       <!-- 输入框 -->
       <ChatInput />
     </section>
@@ -12,6 +12,7 @@
 <script setup>
 import ChatHeader from './ChatHeader.vue'
 import ChatInput from './ChatInput.vue'
+import MessageItem from './MessageItem.vue'
 
 </script>
 <style lang="less" scoped>
