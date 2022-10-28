@@ -5,7 +5,7 @@
     popper-class="profile-popup"
   >
     <template #reference>
-      <el-avatar class="profile-popup__avatar" src="https://avatars.githubusercontent.com/u/72015883?v=4" />
+      <el-avatar class="profile-popup__avatar" src="@/assets/logo.png" />
     </template>
     <template #default>
       <div class="userinfo-avatar--panel" ref='refPopup'>
@@ -75,9 +75,9 @@ const sendMessage = async () => {
   box-shadow: rgba(14, 18, 22, .035) 0px 10px 38px -10px, rgb(14, 18, 22, 0.2) 0px 10px 20px -15px;
   padding: 20px;
   &__avatar {
-    width: 30px;
-    height: 30px;
-    margin-top: 3px;
+    width: 36px;
+    height: 36px;
+    border-radius: 2px;
     -webkit-app-region: no-drag;
   }
 }

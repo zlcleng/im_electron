@@ -43,7 +43,6 @@
     "im_electron_sdk": "^1.4.23",
     "image-size": "^1.0.2",
     "node-fetch": "2.6.1",
-    "nprogress": "^0.2.0",
     "pinia": "^2.0.23",
     "progress-stream": "^2.0.0",
     "vue": "^3.2.40",

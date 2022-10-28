@@ -35,10 +35,10 @@ function setTray () {
 const createWindow = () => {
   // Create the browser window.
   mainWindow = new BrowserWindow({
-    height: 640,
-    width: 960,
-    minWidth: 830,
-    minHeight: 600,
+    height: 760,
+    width: 1100,
+    minWidth: 650,
+    minHeight: 500,
     show:false,
     frame:false,
     icon: logoPng,
@@ -66,9 +66,9 @@ const createWindow = () => {
     }, 30)
   })
   console.log('======process env======', process.env?.NODE_ENV);
-  mainWindow.loadURL(`http://172.16.4.237:5566`)
+  mainWindow.loadURL(`http://172.16.4.237:5566/conversation`)
   // process.env?.NODE_ENV === 'development' ? mainWindow.loadURL(`http://172.16.4.237:5566`) : mainWindow.loadURL(`https://mijiancare.feishu.cn/drive/home/`);
-  // process.env?.NODE_ENV === 'development' && mainWindow.webContents.openDevTools();
+  process.env?.NODE_ENV === 'development' && mainWindow.webContents.openDevTools();
 }
 
 function showNotification () {

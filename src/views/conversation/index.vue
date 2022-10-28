@@ -1,29 +1,28 @@
 <template>
-  <el-row>
-    <el-col :xs="6" :sm="6" :md="5" :lg="5" :xl="4">
-      <div class="list-container">
-        <div class="header-bar">
-          <el-input
-            v-model="input1"
-            placeholder="搜索"
-            class="header-bar__search"
-            :suffix-icon="Search"
-          />
-          <el-icon @click="handleAddButtonClick"><Plus /></el-icon>
-        </div>
-        <div class="scroll-container">
-          <conversation-item
-            :conversation="item"
-            v-for="item in conversationList"
-            :key="item.conversationID"
-          />
-        </div>
+  <div class="conversation-wrap">
+    <div class="list-container">
+      <div class="header-bar">
+        <el-input
+          v-model="input1"
+          placeholder="搜索"
+          class="header-bar__search"
+          :suffix-icon="Search"
+        />
+        <el-icon @click="handleAddButtonClick"><Plus /></el-icon>
       </div>
-    </el-col>
-    <el-col :xs="18" :sm="18" :md="19" :lg="19" :xl="20" class="right-wrap">
+      <div class="scroll-container">
+        <conversation-item
+          :conversation="item"
+          v-for="item in conversationList"
+          :key="item.conversationID"
+        />
+      </div>
+    </div>
+    <div class="drag-border" v-drag></div>
+    <div class="right-wrap">
       <Chat/>
-    </el-col>
-  </el-row>
+    </div>
+  </div>
 </template>
 <script setup>
 import { ref, computed, onMounted, getCurrentInstance } from 'vue'
@@ -41,15 +40,17 @@ const conversationList = ref([
 ])
 </script>
 <style lang="less" scoped>
-.el-row {
+.conversation-wrap {
   height: 100%;
+  display: flex;
   .right-wrap {
+    flex: 1;
     background-color: #f5f5f5;
   }
 }
 .list-container {
   height: 100%;
-  width: 100%;
+  width: 300px;
   display: flex;
   flex-direction: column; // -reverse
   .header-bar {

@@ -2,6 +2,7 @@ import { createApp } from 'vue'
 import App from './App.vue'
 import router from './router'
 import installElementPlus from './plugins/element'
+import { vDrag } from './plugins/directive'
 
 import './styles/index.less'
 
@@ -13,6 +14,8 @@ for (const [key, component] of Object.entries(ElementPlusIconsVue)) {
 }
 
 installElementPlus(app)
+
+app.directive('drag', vDrag)
 
 app.use(router)
     .mount('#app')
